@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: Airline Customer Service API
+  description: |
+    API for handling customer service needs for our airline
+  version: 0.0.1
+servers:
+  - url: http://api.example.com/v1
+    description: Optional server description, e.g. Main (production) server
+paths:
+  /customers/{customer_id}/tickets/{ticket_id}:
+    post:
+      summary: update ticket information
+      parameters:
+        - name: customer_id
+          in: path
+          required: true
+          description: Identifier of the customer that the ticket belongs to.
+          schema:
+            type : string
+          example: 577B4ADB-FCB6-43A5-845B-918A952CB9B4
+        - name: ticket_id
+          in: path
+          required: true
+          description: Identifier of the tickket that the customer owns.
+          schema:
+            type : string
+          example: 577B4ADB-FCB6-43A5-845B-918A952CB9B4
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example: [
+              {
+                customer_id: 14DAFFD0-7E0F-4B28-B7EF-19C6EF45704A,
+                  customer_attributes: {
+                    customer_name: 'John Smith'
+                  },
+                ticket_id:  14DAFFD0-7E0F-4B28-B7EF-19C6EF45704A,
+                  ticket_attributes: {
+                    gate: 'G21',
+                    seat: '12D',
+                    departure_from: 'SFO',
+                    departure_date: '03/27/2020',
+                    return_date: '05/27/2020',
+                    flight_number: 'SAA613'
+                  }
+              }
+            ]
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  customer_id:
+                    type: string
+                    example: 14DAFFD0-7E0F-4B28-B7EF-19C6EF45704A
+                  customer_attributes:
+                    type: object
+                    example: {
+                      customer_name: 'John Smith'
+                    }
+                  ticket_id:
+                    type: string
+                    example: 14DAFFD0-7E0F-4B28-B7EF-19C6EF45704A
+                  ticket_attributes: 
+                    type: object
+                    example: {
+                    gate: 'G21',
+                    seat: '12D',
+                    departure_from: 'SFO',
+                    departure_date: '03/27/2020',
+                    return_date: '05/27/2020',
+                    flight_number: 'SAA613'                     
+                  }
+
+                
+                  
+      responses:
+        '200':    # status code
+          description: A JSON array containing user and flight information
+          content:
+            application/json:
+              schema: 
+                type: array
+                items: 
+                  type: string
