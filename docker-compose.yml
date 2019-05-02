@@ -7,10 +7,10 @@ services:
     image: customerservice 
     tty: true
     volumes:
-      - /Users/naskas/Desktop/dockerExercises/final-project/docs:/app/docs
-      - /Users/naskas/Desktop/dockerExercises/final-project/node_modules:/app/node_modules
+      - ./docs:/app/docs
+      - ./node_modules:/app/node_modules
     ports:
       - "8080:8080"
     working_dir: /app
     
-    command: redoc-cli bundle -o index.html /app/specs/api.yml && ping localhost && redoc-cli serve /app/specs/api.yml
+    command: redoc-cli bundle -o ./docs/index.html /app/specs/api.yml && ping localhost && redoc-cli serve /app/specs/api.yml
